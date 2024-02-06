@@ -7,3 +7,4 @@ fun condition(i: Int) = i < 100
             i += 10
         }
     }
+    
