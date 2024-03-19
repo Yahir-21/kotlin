@@ -1,37 +1,25 @@
 fun main() {
-    var sale1: Int? = null
-    while (sale1 == null) {
-        print("Enter the item's wholesale cost: ")
-        val input = readLine()
-        try {
-            sale1 = input?.toInt()
-            if (sale1 != null && sale1 < 0) {
-                println("Invalid input. Please enter a positive integer.")
-                sale1 = null
-            }
-        } catch (e: Exception) {
-            println("Invalid input. Please enter a positive integer.")
-        }
+    //Asks user for wholesale cost
+    println("Enter the wholesale cost:")
+    val wholesaleCost = readLine()?.toDoubleOrNull()
+    if (wholesaleCost == null || wholesaleCost < 0) {
+        println("Invalid input. Please enter a valid positive number.")
+        return
     }
-    var markup1: Int? = null
-    while (markup1 == null) {
-        print("Enter the item's markup percentage: ")
-        val input = readLine()
-        try {
-            markup1 = input?.toInt()
-            if (markup1 != null && markup1 < 0) {
-                println("Invalid input. Please enter a positive integer.")
-                markup1 = null
-            }
-        } catch (e: Exception) {
-            println("Invalid input. Please enter a positive integer.")
-        }
+    //Asks user for markup percentage
+    println("Enter the markup percentage:")
+    val markupPercentage = readLine()?.toDoubleOrNull()
+    if (markupPercentage == null || markupPercentage < 0) {
+        println("Invalid input. Please enter a valid positive number.")
+        return
     }
-    fun calculateRetail() {
-        var percent = markup1/100
-        var total = sale1*percent
-        var retailP = sale1+total
-        println("The retail price on the item is: $retailP")
-    }
-    print(calculateRetail())
+    //Calculates the retail price with the given info by user
+    val retailPrice = calculateRetail(wholesaleCost, markupPercentage)
+    println("The item's retail price is: $retailPrice")
+}
+//Function below is the calculator for the retail price
+fun calculateRetail(wholesaleCost: Double, markupPercentage: Double): Double {
+    //Formula: retail price = wholesale cost + (wholesale cost + markup percentage / 100)
+    return wholesaleCost + (wholesaleCost + markupPercentage / 100)
+
 }
